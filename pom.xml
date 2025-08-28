@@ -15,7 +15,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-validation</name>
 	<description>spring-boot-validation</description>
-	<url/>
+    <url>https://example.comm</url>
 
 	<properties>
 		<java.version>21</java.version>
