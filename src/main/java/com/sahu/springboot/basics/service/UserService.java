@@ -8,5 +8,5 @@ public interface UserService {
 
     UserResponse add(UserRequest userRequest);
 
-    UserResponse update(UserRequest userRequest);
+    UserResponse update(Long id, UserRequest userRequest);
 }

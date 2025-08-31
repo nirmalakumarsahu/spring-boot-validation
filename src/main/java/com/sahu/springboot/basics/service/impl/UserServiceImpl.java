@@ -34,8 +34,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse update(UserRequest userRequest) {
-        return null;
+    public UserResponse update(Long id, UserRequest userRequest) {
+        return userRepository.findById(id).map(user -> {
+                    user.setName(userRequest.name());
+                    user.setEmail(userRequest.email());
+                    user.setDateOfBirth(userRequest.dateOfBirth());
+                    return UserUtil.toUserResponse(userRepository.save(user));
+                })
+                .orElseThrow(()-> new UserNotFoundException("User not found with id: "+id));
     }
+
+
 
 }

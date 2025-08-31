@@ -16,8 +16,8 @@ public record UserRequest(
         @Email(message = "Invalid email format", groups = {CreateGroup.class, UpdateGroup.class})
         String email,
 
-        @NotNull(message = "Date of birth cannot be null", groups = CreateGroup.class)
-        @Past(message = "Date of birth must be in the past", groups = CreateGroup.class)
+        @NotNull(message = "Date of birth cannot be null", groups = {CreateGroup.class, UpdateGroup.class})
+        @Past(message = "Date of birth must be in the past", groups = {CreateGroup.class, UpdateGroup.class})
         LocalDate dateOfBirth,
 
         @NotBlank(message = "Password cannot be blank", groups = CreateGroup.class)
