@@ -28,7 +28,18 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(HttpStatus.CONFLICT, productAlreadyExistException.getMessage(), null);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ApiResponse<String>> handleUserNotFoundException(UserNotFoundException userNotFoundException)
+    {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, userNotFoundException.getMessage(), null);
+    }
 
+    @ExceptionHandler(UserAlreadyExistException.class)
+    public ResponseEntity<ApiResponse<String>> handleUserAlreadyExistException(UserAlreadyExistException userAlreadyExistException)
+    {
+        return buildErrorResponse(HttpStatus.CONFLICT, userAlreadyExistException.getMessage(), null);
+    }
+    
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<String>> handleValidationExceptions(MethodArgumentNotValidException methodArgumentNotValidException)
     {
