@@ -1,7 +1,6 @@
 package com.sahu.springboot.basics.exception;
 
 import com.sahu.springboot.basics.dto.ApiResponse;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -39,7 +38,7 @@ public class GlobalExceptionHandler {
     {
         return buildErrorResponse(HttpStatus.CONFLICT, userAlreadyExistException.getMessage(), null);
     }
-    
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<String>> handleValidationExceptions(MethodArgumentNotValidException methodArgumentNotValidException)
     {

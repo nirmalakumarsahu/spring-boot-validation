@@ -24,12 +24,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse findByName(String name) {
-        return userRepository.findByName(name).map(UserUtil::toUserResponse)
-                .orElseThrow(() -> new UserNotFoundException("User not found with name: " + name));
-    }
-
-    @Override
     public UserResponse add(UserRequest userRequest) {
         if(userRepository.existsByEmail(userRequest.email())) {
             throw new UserAlreadyExistException("User is already exist with email: "+ userRequest.email());

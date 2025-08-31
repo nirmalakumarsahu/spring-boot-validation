@@ -6,8 +6,6 @@ import com.sahu.springboot.basics.dto.UserResponse;
 public interface UserService {
     UserResponse findByEmail(String email);
 
-    UserResponse findByName(String name);
-
     UserResponse add(UserRequest userRequest);
 
     UserResponse update(UserRequest userRequest);

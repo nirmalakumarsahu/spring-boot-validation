@@ -1,20 +1,14 @@
 package com.sahu.springboot.basics.controller.rest;
 
-import com.sahu.springboot.basics.dto.ApiResponse;
-import com.sahu.springboot.basics.dto.ProductResponse;
-import com.sahu.springboot.basics.dto.UserResponse;
+import com.sahu.springboot.basics.dto.*;
 import com.sahu.springboot.basics.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -30,5 +24,13 @@ public class UserRestController {
         return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "User Found Successfully!",
                 userService.findByEmail(email)));
     }
+
+    @PostMapping
+    public ResponseEntity<ApiResponse<UserResponse>> add(@Valid @RequestBody UserRequest userRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(HttpStatus.CREATED, "User Created",
+                userService.add(userRequest))
+        );
+    }
+
 
 }

@@ -4,7 +4,6 @@ import com.sahu.springboot.basics.dto.ApiResponse;
 import com.sahu.springboot.basics.dto.ProductRequest;
 import com.sahu.springboot.basics.dto.ProductResponse;
 import com.sahu.springboot.basics.service.ProductService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
