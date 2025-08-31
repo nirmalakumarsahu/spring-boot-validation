@@ -17,23 +17,20 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ApiResponse<String>> handleProductNotFoundException(ProductNotFoundException productNotFoundException,
-                                                                              HttpServletRequest httpServletRequest)
+    public ResponseEntity<ApiResponse<String>> handleProductNotFoundException(ProductNotFoundException productNotFoundException)
     {
-        return buildErrorResponse(HttpStatus.NOT_FOUND, productNotFoundException.getMessage(), null, httpServletRequest);
+        return buildErrorResponse(HttpStatus.NOT_FOUND, productNotFoundException.getMessage(), null);
     }
 
     @ExceptionHandler(ProductAlreadyExistException.class)
-    public ResponseEntity<ApiResponse<String>> handleProductAlreadyExistException(ProductAlreadyExistException productAlreadyExistException,
-                                                                                  HttpServletRequest httpServletRequest)
+    public ResponseEntity<ApiResponse<String>> handleProductAlreadyExistException(ProductAlreadyExistException productAlreadyExistException)
     {
-        return buildErrorResponse(HttpStatus.CONFLICT, productAlreadyExistException.getMessage(), null, httpServletRequest);
+        return buildErrorResponse(HttpStatus.CONFLICT, productAlreadyExistException.getMessage(), null);
     }
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiResponse<String>> handleValidationExceptions(MethodArgumentNotValidException methodArgumentNotValidException,
-                                                                          HttpServletRequest httpServletRequest)
+    public ResponseEntity<ApiResponse<String>> handleValidationExceptions(MethodArgumentNotValidException methodArgumentNotValidException)
     {
         Map<String, String> fieldErrors = methodArgumentNotValidException.getBindingResult()
                 .getFieldErrors()
@@ -44,21 +41,20 @@ public class GlobalExceptionHandler {
                                 .orElse("Invalid Values")
                 ));
 
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, "Validation failed", fieldErrors, httpServletRequest);
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, "Validation failed", fieldErrors);
     }
 
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiResponse<String>> handleGenericException(Exception exception, HttpServletRequest httpServletRequest) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), null, httpServletRequest);
+    public ResponseEntity<ApiResponse<String>> handleGenericException(Exception exception) {
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), null);
     }
 
-    private ResponseEntity<ApiResponse<String>> buildErrorResponse(HttpStatus httpStatus, String message, Object error, HttpServletRequest httpServletRequest) {
+    private ResponseEntity<ApiResponse<String>> buildErrorResponse(HttpStatus httpStatus, String message, Object error) {
         ApiResponse<String> response = ApiResponse.error(
                 httpStatus,
                 message,
-                error,
-                httpServletRequest.getRequestURI()
+                error
         );
 
         return ResponseEntity.status(httpStatus).body(response);
