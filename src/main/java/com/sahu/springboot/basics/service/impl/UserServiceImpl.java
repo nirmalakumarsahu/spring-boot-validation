@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse add(UserRequest userRequest) {
-        if(userRepository.existsByEmail(userRequest.email())) {
-            throw new UserAlreadyExistException("User is already exist with email: "+ userRequest.email());
+        if (userRepository.existsByEmail(userRequest.email())) {
+            throw new UserAlreadyExistException("User is already exist with email: " + userRequest.email());
         }
 
         User user = userRepository.save(UserUtil.toUser(userRequest));
@@ -41,9 +41,7 @@ public class UserServiceImpl implements UserService {
                     user.setDateOfBirth(userRequest.dateOfBirth());
                     return UserUtil.toUserResponse(userRepository.save(user));
                 })
-                .orElseThrow(()-> new UserNotFoundException("User not found with id: "+id));
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
     }
-
-
 
 }

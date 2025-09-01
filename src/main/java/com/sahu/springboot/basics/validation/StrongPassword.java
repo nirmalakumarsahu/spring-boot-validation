@@ -13,6 +13,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StrongPassword {
     String message() default "Password must contain at least 1 uppercase, 1 lowercase, 1 digit, and 1 special character";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

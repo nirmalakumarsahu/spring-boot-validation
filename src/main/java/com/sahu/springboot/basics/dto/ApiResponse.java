@@ -43,9 +43,8 @@ public class ApiResponse<T> {
     private static String getCurrentRequestPath() {
         try {
             return ServletUriComponentsBuilder.fromCurrentRequest().build().getPath();
-        }
-        catch (Exception e) {
-            return  null;
+        } catch (Exception e) {
+            return null;
         }
     }
 

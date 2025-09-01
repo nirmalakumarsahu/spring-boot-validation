@@ -23,7 +23,8 @@ public class UserRestController {
 
     @GetMapping("/email/{email}")
     public ResponseEntity<ApiResponse<UserResponse>> getByEmail(
-            @PathVariable  @NotBlank(message = "Email is required") String email) {
+            @PathVariable @NotBlank(message = "Email is required") String email)
+    {
         return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "User Found Successfully!",
                 userService.findByEmail(email)));
     }
@@ -37,8 +38,11 @@ public class UserRestController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<UserResponse>> update(@PathVariable @NotNull(message = "User id is required") Long id,
-                                                           @Validated(UpdateGroup.class) @RequestBody UserRequest userRequest) {
-        return  null;
+                                                            @Validated(UpdateGroup.class) @RequestBody UserRequest userRequest)
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(HttpStatus.OK, "User Updated",
+                userService.update(id, userRequest))
+        );
     }
 
 }

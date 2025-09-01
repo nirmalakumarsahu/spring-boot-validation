@@ -40,8 +40,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponse add(ProductRequest productRequest) {
-        if(productRepository.existsByName(productRequest.name())) {
-            throw new ProductAlreadyExistException("Product is already exist with name "+productRequest.name());
+        if (productRepository.existsByName(productRequest.name())) {
+            throw new ProductAlreadyExistException("Product is already exist with name " + productRequest.name());
         }
 
         Product product = productRepository.save(ProductUtil.toProduct(productRequest));

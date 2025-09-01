@@ -27,5 +27,6 @@ public record UserRequest(
         @NotNull(message = "Terms and conditions must be accepted", groups = CreateGroup.class)
         @AssertTrue(message = "You must accept the terms and conditions", groups = CreateGroup.class)
         Boolean teamAndCondition
-) {
+)
+{
 }
