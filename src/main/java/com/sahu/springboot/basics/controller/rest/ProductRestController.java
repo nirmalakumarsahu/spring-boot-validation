@@ -28,32 +28,28 @@ public class ProductRestController {
     public ResponseEntity<ApiResponse<ProductResponse>> getById(
             @PathVariable @Min(value = 1, message = "Product ID must be greater than 0") Long id)
     {
-        return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Product Found Successfully!",
-                productService.findById(id))
-        );
+        return ApiResponse.success(HttpStatus.OK, "Product Found Successfully!",
+                productService.findById(id));
     }
 
     @GetMapping("/name/{name}")
     public ResponseEntity<ApiResponse<ProductResponse>> getByName(
             @PathVariable @NotBlank(message = "Name is required") String name)
     {
-        return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Product Found Successfully!",
-                productService.findByName(name))
-        );
+        return ApiResponse.success(HttpStatus.OK, "Product Found Successfully!",
+                productService.findByName(name));
     }
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<ProductResponse>>> all() {
-        return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Products Found",
-                productService.findAll())
-        );
+        return ApiResponse.success(HttpStatus.OK, "Products Found",
+                productService.findAll());
     }
 
     @PostMapping
     public ResponseEntity<ApiResponse<ProductResponse>> add(@Valid @RequestBody ProductRequest productRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(HttpStatus.CREATED, "Product Created",
-                productService.add(productRequest))
-        );
+        return ApiResponse.success(HttpStatus.CREATED, "Product Created",
+                productService.add(productRequest));
     }
 
 }

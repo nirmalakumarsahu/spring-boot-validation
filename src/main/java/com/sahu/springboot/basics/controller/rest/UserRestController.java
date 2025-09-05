@@ -25,24 +25,22 @@ public class UserRestController {
     public ResponseEntity<ApiResponse<UserResponse>> getByEmail(
             @PathVariable @NotBlank(message = "Email is required") String email)
     {
-        return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "User Found Successfully!",
-                userService.findByEmail(email)));
+        return ApiResponse.success(HttpStatus.OK, "User Found Successfully!",
+                userService.findByEmail(email));
     }
 
     @PostMapping
     public ResponseEntity<ApiResponse<UserResponse>> add(@Validated(CreateGroup.class) @RequestBody UserRequest userRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(HttpStatus.CREATED, "User Created",
-                userService.add(userRequest))
-        );
+        return ApiResponse.success(HttpStatus.CREATED, "User Created",
+                userService.add(userRequest));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<UserResponse>> update(@PathVariable @NotNull(message = "User id is required") Long id,
                                                             @Validated(UpdateGroup.class) @RequestBody UserRequest userRequest)
     {
-        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(HttpStatus.OK, "User Updated",
-                userService.update(id, userRequest))
-        );
+        return ApiResponse.success(HttpStatus.OK, "User Updated",
+                userService.update(id, userRequest));
     }
 
 }
