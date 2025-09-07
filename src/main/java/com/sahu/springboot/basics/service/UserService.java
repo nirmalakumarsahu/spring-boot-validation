@@ -4,9 +4,9 @@ import com.sahu.springboot.basics.dto.UserRequest;
 import com.sahu.springboot.basics.dto.UserResponse;
 
 public interface UserService {
-    UserResponse findByEmail(String email);
+    UserResponse getByEmail(String email);
 
-    UserResponse add(UserRequest userRequest);
+    UserResponse createUser(UserRequest userRequest);
 
-    UserResponse update(Long id, UserRequest userRequest);
+    UserResponse updateUser(Long id, UserRequest userRequest);
 }
