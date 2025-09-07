@@ -22,7 +22,7 @@ public class UserRestController {
     private final UserService userService;
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<ApiResponse<UserResponse>> getByEmail(
+    public ResponseEntity<ApiResponse<UserResponse>> getUserByEmail(
             @PathVariable @NotBlank(message = "Email is required") String email)
     {
         return ApiResponse.success(HttpStatus.OK, "User Found Successfully!",
