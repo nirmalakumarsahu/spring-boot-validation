@@ -26,7 +26,7 @@ public class UserRestController {
             @PathVariable @NotBlank(message = "Email is required") String email)
     {
         return ApiResponse.success(HttpStatus.OK, "User Found Successfully!",
-                userService.getByEmail(email));
+                userService.getUserByEmail(email));
     }
 
     @PostMapping

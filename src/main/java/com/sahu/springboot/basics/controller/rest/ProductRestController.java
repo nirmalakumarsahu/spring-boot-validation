@@ -10,12 +10,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@Validated
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -25,31 +22,31 @@ public class ProductRestController {
     private final ProductService productService;
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<ApiResponse<ProductResponse>> getById(
+    public ResponseEntity<ApiResponse<ProductResponse>> getProductById(
             @PathVariable @Min(value = 1, message = "Product ID must be greater than 0") Long id)
     {
         return ApiResponse.success(HttpStatus.OK, "Product Found Successfully!",
-                productService.findById(id));
+                productService.getProductById(id));
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<ApiResponse<ProductResponse>> getByName(
+    public ResponseEntity<ApiResponse<ProductResponse>> getProductByName(
             @PathVariable @NotBlank(message = "Name is required") String name)
     {
         return ApiResponse.success(HttpStatus.OK, "Product Found Successfully!",
-                productService.findByName(name));
+                productService.getProductByName(name));
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<ProductResponse>>> all() {
+    public ResponseEntity<ApiResponse<List<ProductResponse>>> getAllProducts() {
         return ApiResponse.success(HttpStatus.OK, "Products Found",
-                productService.findAll());
+                productService.getAllProducts());
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<ProductResponse>> add(@Valid @RequestBody ProductRequest productRequest) {
+    public ResponseEntity<ApiResponse<ProductResponse>> createProduct(@Valid @RequestBody ProductRequest productRequest) {
         return ApiResponse.success(HttpStatus.CREATED, "Product Created",
-                productService.add(productRequest));
+                productService.createProduct(productRequest));
     }
 
 }

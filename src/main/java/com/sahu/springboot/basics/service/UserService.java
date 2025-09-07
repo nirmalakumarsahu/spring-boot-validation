@@ -4,7 +4,7 @@ import com.sahu.springboot.basics.dto.UserRequest;
 import com.sahu.springboot.basics.dto.UserResponse;
 
 public interface UserService {
-    UserResponse getByEmail(String email);
+    UserResponse getUserByEmail(String email);
 
     UserResponse createUser(UserRequest userRequest);
 
