@@ -10,5 +10,6 @@ public record UserResponse(
         String name,
         String email,
         LocalDate dateOfBirth
-) {
+)
+{
 }
